@@ -1,10 +1,28 @@
+def prints(state: int):
+    x = state%4
+    if(x == 0): way = 'N'
+    elif(x == 1): way = 'L'
+    elif(x == 2): way = 'S'
+    elif(x == 3): way = 'O'
+    return str(state//4) + way
 
+og = open("resultado.txt", "r")
+num = 0
+
+for line in og:
+    print(prints(num) + ':')
+    print(line)
+    num += 1
+
+og.close()
+
+'''
 file = open("zerar.txt", "r")
 og = open("resultado.txt", "w")
 og.write(file.read())
 file.close()
 og.close()
-
+'''
 '''
 import connection as cn
 skt = cn.connect(2037)

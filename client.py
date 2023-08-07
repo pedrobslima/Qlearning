@@ -38,8 +38,8 @@ q_matrix = [
     [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000],
     [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000], [0.000000, 0.000000, 0.000000]]
 
-ALFA = 0.2
-GAMMA = 0.5
+ALFA = 0.6
+GAMMA = 0.4
 skt = cn.connect(2037)
 
 # PASSOS: 
@@ -78,7 +78,7 @@ def prints(state: int):
     return str(state//4) + way
 
 old_state =  0 #'0b0000000'
-for rept in range(1000):
+for rept in range(100000):
     # [1]
     acao = randint(0,2)
     # [2] e [3]
@@ -88,6 +88,8 @@ for rept in range(1000):
     q_matrix[old_state][acao] = q_update(old_state, new_state, acao, recompensa, q_matrix)
     print(str(rept+1)+':', prints(old_state), convert_action(acao), prints(new_state), recompensa)
     old_state = new_state
+    if(rept==20000 or rept==50000):
+        ALFA -= 0.2
 
 results = open("resultado.txt", "w")
 for line_state in q_matrix:
