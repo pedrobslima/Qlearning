@@ -1,6 +1,6 @@
 #Aqui vocês irão colocar seu algoritmo de aprendizado
 import connection as cn
-from random import randint
+from random import randint, random
 #   V------------ações---------------V          
 #   [Giro esq, Giro dir, Pulo frente]
 q_matrix = [ 
@@ -40,6 +40,7 @@ q_matrix = [
 
 ALFA = 0.6
 GAMMA = 0.4
+EPSILON = 0.05
 skt = cn.connect(2037)
 
 # PASSOS: 
@@ -80,7 +81,10 @@ def prints(state: int):
 old_state =  0 #'0b0000000'
 for rept in range(100000):
     # [1]
-    acao = randint(0,2)
+    if(random() > EPSILON):
+        acao = randint(0,2)
+    else:
+        acao = q_matrix[old_state].index(max(q_matrix[old_state]))
     # [2] e [3]
     new_state, recompensa = cn.get_state_reward(skt, convert_action(acao))
     new_state = int(new_state, 2)
