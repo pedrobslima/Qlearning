@@ -79,7 +79,7 @@ def prints(state: int):
     return str(state//4) + way
 
 old_state =  0 #'0b0000000'
-for rept in range(100000):
+for rept in range(500000):
     # [1]
     if(random() > EPSILON):
         acao = randint(0,2)
