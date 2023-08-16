@@ -1,4 +1,4 @@
-#import connection as cn
+import connection_teste as cn
 
 def convert_action(action):
     if(type(action) == int):
@@ -18,10 +18,10 @@ def prints(state: int):
     elif(x == 3): way = 'O'
     return str(state//4) + way
 
-#skt = cn.connect(2037)
+skt = cn.connect(2037)
 q_table = []
 
-table_file = open("zerar3.txt", "r")
+table_file = open("resultado copy.txt", "r")
 for line in table_file:
     left = float(line.split(' ')[0])
     right = float(line.split(' ')[1])
@@ -29,9 +29,19 @@ for line in table_file:
     q_table.append([left, right, jump])
 table_file.close()
 
+count = 1
+recompensa = -1
+state = 0
+while(recompensa <= 0):
+    acao = q_table[state].index(max(q_table[state]))
+    state, recompensa = cn.get_state_reward(skt, convert_action(acao))
+    state = int(state, 2)
+    print(str(count)+':', prints(state), convert_action(acao), recompensa)
+
+'''
 for i in range(len(q_table)):
     print(f"{prints(i)}:\n{q_table[i][0]} | {q_table[i][1]} | {q_table[i][2]}")
-
+'''
 '''recompensa = -1
 curr_state = 0
 rept = 1

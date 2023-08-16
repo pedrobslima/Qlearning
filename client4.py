@@ -1,4 +1,4 @@
-import connection3 as cnt
+import connection4 as cnt
 from random import randint, random
 
 q_matrix = []
@@ -12,9 +12,9 @@ for line in table_file:
 table_file.close()
 
 ALFA = 0.2
-GAMMA = 0.4
+GAMMA = 0.3
 EPSILON = 0.05
-skt = cnt.connect(2500)
+skt = cnt.connect(2037)
 
 # PASSOS: 
 # 1) Escolher uma ação e executá-la
@@ -51,7 +51,7 @@ def prints(state: int):
     elif(x == 3): way = 'O'
     return str(state//4) + way
 
-old_state =  0 #'0b0000000'
+old_state =  3 #'0b0000000'
 for rept in range(20000):
     # [1]
     if(random() > EPSILON):
@@ -65,8 +65,6 @@ for rept in range(20000):
     q_matrix[old_state][acao] = q_update(old_state, new_state, acao, recompensa, q_matrix)
     print(str(rept+1)+':', prints(old_state), convert_action(acao), prints(new_state), recompensa)
     old_state = new_state
-    if(rept==10000):
-        EPSILON = 0.1
 
 results = open("teste3-2.txt", "w")
 for line_state in q_matrix:

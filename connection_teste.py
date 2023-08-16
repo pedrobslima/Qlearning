@@ -10,9 +10,8 @@ def connect(port):
         s.connect(('127.0.0.1',port))
         print('conexao TCP estabelecida')
         return s
-    except Exception as e:
+    except:
         print('falhou em fazer o a conexao TCP como cliente')
-        print(e)
         return 0
         #self.terminate()
     else:

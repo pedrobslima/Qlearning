@@ -40,7 +40,7 @@ q_matrix = [
 ALFA = 0.2
 GAMMA = 0.4
 EPSILON = 0.05
-skt = cnt.connect(2037)
+skt = cnt.connect(2040)
 
 # PASSOS: 
 # 1) Escolher uma ação e executá-la
@@ -94,7 +94,7 @@ for rept in range(200000):
     if(rept==50000 or rept==100000):
         EPSILON += 0.1
 
-results = open("teste3 copy.txt", "w")
+results = open("resultado2.txt", "w")
 for line_state in q_matrix:
     line = "{:.5f} {:.5f} {:.5f}\n".format(line_state[0], line_state[1], line_state[2])
     results.write(line)
