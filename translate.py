@@ -8,7 +8,7 @@ def prints(state: int):
 
 q_table = []
 
-table_file = open("teste3-2.txt", "r")
+table_file = open("resultado.txt", "r")
 for line in table_file:
     left = float(line.split(' ')[0])
     right = float(line.split(' ')[1])
